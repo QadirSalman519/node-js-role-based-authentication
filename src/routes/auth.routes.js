@@ -12,14 +12,9 @@ router.get("/me", protect, (req, res) => {
   res.json({ success: true, user: req.user });
 });
 
-router.get(
-  "/super-admin",
-  protect,
-  authorizeRoles("super-admin"),
-  (req, res) => {
-    res.json({ success: true, message: "Welcome Admin!" });
-  }
-);
+router.get("/super-admin", protect, authorizeRoles("super-admin"), (req, res) => {
+  res.json({ success: true, message: "Welcome Admin!" });
+});
 
 router.get("/admin", protect, authorizeRoles("admin"), (req, res) => {
   res.json({ success: true, message: "Welcome Admin!" });
@@ -28,6 +23,7 @@ router.get("/admin", protect, authorizeRoles("admin"), (req, res) => {
 router.get("/lead", protect, authorizeRoles("lead"), (req, res) => {
   res.json({ success: true, message: "Welcome Lead!" });
 });
+
 router.get("/manager", protect, authorizeRoles("manager"), (req, res) => {
   res.json({ success: true, message: "Welcome Manager!" });
 });
