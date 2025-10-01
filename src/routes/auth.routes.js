@@ -13,7 +13,7 @@ router.get("/me", protect, (req, res) => {
 });
 
 router.get("/super-admin", protect, authorizeRoles("super-admin"), (req, res) => {
-  res.json({ success: true, message: "Welcome Admin!" });
+  res.json({ success: true, message: "Welcome Super Admin!" });
 });
 
 router.get("/admin", protect, authorizeRoles("admin"), (req, res) => {
