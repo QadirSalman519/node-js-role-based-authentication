@@ -12,17 +12,24 @@ router.get("/me", protect, (req, res) => {
   res.json({ success: true, user: req.user });
 });
 
+router.get(
+  "/super-admin",
+  protect,
+  authorizeRoles("super-admin"),
+  (req, res) => {
+    res.json({ success: true, message: "Welcome Admin!" });
+  }
+);
+
 router.get("/admin", protect, authorizeRoles("admin"), (req, res) => {
   res.json({ success: true, message: "Welcome Admin!" });
 });
 
-router.get(
-  "/dashboard",
-  protect,
-  authorizeRoles("admin", "manager"),
-  (req, res) => {
-    res.json({ success: true, message: "Dashboard for Admin & Manager" });
-  }
-);
+router.get("/lead", protect, authorizeRoles("lead"), (req, res) => {
+  res.json({ success: true, message: "Welcome Lead!" });
+});
+router.get("/manager", protect, authorizeRoles("manager"), (req, res) => {
+  res.json({ success: true, message: "Welcome Manager!" });
+});
 
 export default router;
