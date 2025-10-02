@@ -1,5 +1,5 @@
 import express from "express";
-import { register, login } from "../controllers/auth.controller.js";
+import { register, login, forgetPassword, resetPassword } from "../controllers/auth.controller.js";
 import { protect } from "../middlewares/auth.middleware.js";
 import { authorizeRoles } from "../middlewares/role.middleware.js";
 
@@ -7,6 +7,8 @@ const router = express.Router();
 
 router.post("/register", register);
 router.post("/login", login);
+router.post("/forget-password", forgetPassword);
+router.post("/reset-password/:token", resetPassword);
 
 router.get("/me", protect, (req, res) => {
   res.json({ success: true, user: req.user });
